@@ -1,0 +1,24 @@
+PRAGMA foreign_keys = ON; 
+ 
+CREATE TABLE users(
+  username VARCHAR(20) NOT NULL,
+  business VARCHAR(40) NOT NULL,
+  email VARCHAR(40) NOT NULL,
+  password VARCHAR(256) NOT NULL,
+  created DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY(username)
+);
+
+CREATE TABLE orders(
+  orderid INTEGER PRIMARY KEY,
+  description VARCHAR(300) NOT NULL,
+  phone VARCHAR (30) NOT NULL,
+  status VARCHAR(20) NOT NULL,
+  response_type VARCHAR(10) NOT NULL,
+  owner VARCHAR(20) NOT NULL,
+  created DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY(owner)
+    REFERENCES users(username)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
+);
